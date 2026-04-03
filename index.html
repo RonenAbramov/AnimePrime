@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- === הגדרות לקידום בגוגל (SEO) === -->
+    <!-- === SEO Settings === -->
     <title>AnimePrime | קהילת אספני האנימה של ישראל</title>
     <meta name="description" content="קהילת אספני האנימה של ישראל! המלצות, דילים וקישורים לפיגרים נדירים מעליאקספרס.">
     <meta name="keywords" content="אנימה, וואן פיס, נארוטו, דרגון בול, פיגרים, אליאקספרס, קופונים, דילים, אספנות">
@@ -25,36 +25,39 @@
             --accent: #dc2626; 
         }
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            touch-action: pan-y;
-        }
+        /* Accessibility Styles */
+        html.high-contrast { filter: contrast(1.5); }
+        html.grayscale-mode { filter: grayscale(1); }
+        html.highlight-links a { outline: 2px dashed #facc15 !important; text-decoration: underline !important; font-weight: bold !important; }
+
+        html { scroll-behavior: smooth; }
 
         body {
+            margin: 0; padding: 0;
             font-family: 'Heebo', sans-serif; 
             color: var(--text-light);
             background-color: var(--bg-bottom);
-            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .font-anime { font-family: 'Outfit', sans-serif; }
 
-        .split-bg {
-            position: absolute; 
+        /* Scrollable Header Background */
+        .header-bg-section {
+            position: absolute;
             top: 0; left: 0; right: 0;
             height: 220px; 
             background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); 
-            z-index: -1;
+            z-index: 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
         }
 
-        /* === עיצוב כפתורי פרימיום כהים === */
+        /* Premium Buttons */
         .elegant-btn {
             background-color: var(--btn-bg);
             color: var(--btn-text);
@@ -65,7 +68,7 @@
             font-size: 1.05rem;
             font-weight: 700;
             letter-spacing: 0.03em;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
@@ -73,6 +76,7 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
         }
 
         .elegant-btn:hover {
@@ -83,29 +87,21 @@
         }
 
         .elegant-btn::after {
-            content: '';
-            position: absolute;
+            content: ''; position: absolute;
             top: 0; left: -150%; width: 50%; height: 100%;
             background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
             transform: skewX(-25deg);
             animation: shine 8s infinite;
         }
 
-        @keyframes shine {
-            0% { left: -150%; }
-            15% { left: 200%; }
-            100% { left: 200%; }
-        }
+        @keyframes shine { 0% { left: -150%; } 15% { left: 200%; } 100% { left: 200%; } }
 
-        /* === אנימציית גיצים עשירה === */
+        /* Embers Animation */
         .ember {
-            position: absolute;
-            bottom: -20px;
+            position: absolute; bottom: -20px;
             background: radial-gradient(circle, #ffeb3b 0%, #ff9800 40%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(1.5px);
-            animation: float-ember infinite ease-in;
-            opacity: 0;
+            border-radius: 50%; filter: blur(1.5px);
+            animation: float-ember infinite ease-in; opacity: 0;
         }
         @keyframes float-ember {
             0% { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
@@ -115,10 +111,9 @@
             100% { transform: translateY(-200px) scale(0.4) translateX(-20px); opacity: 0; }
         }
 
-        /* === בועית הועתק === */
+        /* Copy Toast */
         .copy-toast {
-            position: absolute;
-            bottom: 120%; left: 50%; transform: translateX(-50%) translateY(10px);
+            position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%) translateY(10px);
             background: #10b981; color: white; padding: 6px 14px; border-radius: 10px;
             font-size: 0.8rem; font-weight: bold; opacity: 0; transition: all 0.3s ease;
             pointer-events: none; box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
@@ -126,16 +121,12 @@
         }
         .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* === אפקט סופר סאייה קלאסי === */
+        /* SSJ Effect */
         .ssj-shake-active { animation: ssj-shake 0.1s infinite; }
         .ssj-shake-active::before {
-            content: ''; 
-            position: fixed; 
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: radial-gradient(circle, rgba(253,224,71,0.2) 0%, rgba(253,224,71,0.05) 100%);
-            z-index: 10000;
-            pointer-events: none; 
-            animation: ssj-flash 0.05s infinite alternate;
+            z-index: 10000; pointer-events: none; animation: ssj-flash 0.05s infinite alternate;
         }
         @keyframes ssj-shake {
             0% { transform: translate(2px, 1px) rotate(0deg); }
@@ -144,10 +135,10 @@
         }
         @keyframes ssj-flash {
             0% { background-color: rgba(255, 255, 255, 0.15); }
-            100% { background-color: rgba(253, 224, 71, 0.3); box-shadow: inset 0 0 150px rgba(253,224,71,0.4); }
+            100% { background-color: rgba(253, 224, 71, 0.3); }
         }
 
-        .tab-btn { position: relative; transition: all 0.3s ease; color: #9ca3af; padding-bottom: 8px; }
+        .tab-btn { position: relative; transition: all 0.3s ease; color: #9ca3af; padding-bottom: 8px; border: none; background: transparent; cursor: pointer; }
         .tab-btn.active { color: #ffffff; font-weight: bold; }
         .tab-btn.active::after { content:''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background-color: #dc2626; border-radius: 2px; }
 
@@ -159,32 +150,26 @@
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
     </style>
 </head>
-<body class="flex flex-col items-center pb-12 px-5">
+<body>
 
-    <div class="split-bg overflow-hidden">
-        <!-- מערך גיצים מוגבר -->
+    <!-- Header background that scrolls away -->
+    <div class="header-bg-section">
         <div class="ember" style="left: 5%; animation-duration: 3s; animation-delay: 0.1s; width: 4px; height: 4px;"></div>
-        <div class="ember" style="left: 12%; animation-duration: 4.5s; animation-delay: 0.5s; width: 6px; height: 6px;"></div>
-        <div class="ember" style="left: 20%; animation-duration: 3.2s; animation-delay: 1.2s; width: 3px; height: 3px;"></div>
-        <div class="ember" style="left: 28%; animation-duration: 5s; animation-delay: 0.8s; width: 5px; height: 5px;"></div>
-        <div class="ember" style="left: 35%; animation-duration: 3.8s; animation-delay: 2s; width: 4px; height: 4px;"></div>
-        <div class="ember" style="left: 42%; animation-duration: 4.2s; animation-delay: 0.3s; width: 7px; height: 7px;"></div>
-        <div class="ember" style="left: 50%; animation-duration: 3.5s; animation-delay: 1.5s; width: 5px; height: 5px;"></div>
-        <div class="ember" style="left: 58%; animation-duration: 4.8s; animation-delay: 0.7s; width: 3px; height: 3px;"></div>
-        <div class="ember" style="left: 65%; animation-duration: 3.1s; animation-delay: 2.2s; width: 6px; height: 6px;"></div>
-        <div class="ember" style="left: 75%; animation-duration: 5.5s; animation-delay: 1.1s; width: 4px; height: 4px;"></div>
-        <div class="ember" style="left: 82%; animation-duration: 3.9s; animation-delay: 0.2s; width: 5px; height: 5px;"></div>
-        <div class="ember" style="left: 90%; animation-duration: 4.4s; animation-delay: 1.8s; width: 4px; height: 4px;"></div>
-        <div class="ember" style="left: 95%; animation-duration: 3.3s; animation-delay: 0.9s; width: 6px; height: 6px;"></div>
+        <div class="ember" style="left: 20%; animation-duration: 4.5s; animation-delay: 0.5s; width: 6px; height: 6px;"></div>
+        <div class="ember" style="left: 45%; animation-duration: 3.2s; animation-delay: 1.2s; width: 3px; height: 3px;"></div>
+        <div class="ember" style="left: 70%; animation-duration: 5s; animation-delay: 0.8s; width: 5px; height: 5px;"></div>
+        <div class="ember" style="left: 90%; animation-duration: 3.8s; animation-delay: 2s; width: 7px; height: 7px;"></div>
     </div>
 
     <main class="w-full max-w-[28rem] mx-auto flex flex-col items-center z-10 relative mt-[220px]">
         
         <header class="flex flex-col items-center text-center mb-8 w-full">
+            <!-- Logo Trigger -->
             <div class="w-64 h-64 md:w-72 md:h-72 relative z-10 -mt-32 md:-mt-36 mb-1" onclick="handleLogoClick()" style="cursor: pointer; user-select: none;">
                 <img src="https://i.postimg.cc/FHJ92CpP/Anime-Prime-Logo-NObackraound-(1).png" alt="לוגו AnimePrime" class="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] active:scale-95 transition-transform">
             </div>
             
+            <!-- Secret Hint -->
             <div class="text-yellow-500/20 text-[0.60rem] font-bold tracking-widest uppercase mb-4 -mt-6 pointer-events-none font-anime">לחצו על הלוגו 6 פעמים במהירות</div>
             
             <h1 class="font-anime text-4xl md:text-5xl font-black tracking-wider mb-2 text-white uppercase mt-2">ANIME PRIME</h1>
@@ -206,11 +191,18 @@
                     <img src="https://i.postimg.cc/3JCcMnxZ/pngegg-(1).png" alt="Dragon Ball" class="absolute -top-6 -left-4 w-20 h-20 object-contain drop-shadow-[0_8px_15px_rgba(0,0,0,0.7)] transform -rotate-12 pointer-events-none">
                     <h3 class="text-white font-anime text-lg md:text-xl font-bold mb-6 flex items-center justify-start gap-3"><i data-lucide="sparkles" class="w-5 h-5 text-red-500"></i>מה מחכה לכם כאן?</h3>
                     <ul class="space-y-4 pr-1 text-right">
-                        <li class="flex items-start gap-3"><i data-lucide="crosshair" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">המלצות מדויקות על פיגרים איכותיים</span></li>
-                        <li class="flex items-start gap-3"><i data-lucide="zap" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">דילים משתלמים במיוחד שלא תרצו לפספס</span></li>
-                        <li class="flex items-start gap-3"><i data-lucide="link" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">קישורים ישירים להזמנה קלה ומהירה</span></li>
-                        <li class="flex items-start gap-3"><i data-lucide="gem" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">פריטים ייחודיים שנבחרו בקפידה לאספנים אמיתיים</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="crosshair" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">המלצות מדויקות על פיגרים איכותיים</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="zap" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">דילים משתלמים במיוחד שלא תרצו לפספס</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="link" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">קישורים ישירים להזמנה קלה ומהירה</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="gem" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">פריטים ייחודיים שנבחרו בקפידה לאספנים אמיתיים</span></li>
                     </ul>
+                </div>
+                
+                <div class="text-center px-4 mt-6">
+                    <h3 class="text-white font-anime font-bold mb-2 text-lg">למה דווקא אנחנו?</h3>
+                    <p class="text-[0.85rem] md:text-sm text-gray-400">
+                        אנחנו לא עוד עמוד — <strong class="text-gray-200">אנחנו קהילה.</strong> כל פריט שתראו כאן נבדק ונבחר מתוך ניסיון אמיתי בעולם האספנות, עם דגש על איכות וערך לאספן.
+                    </p>
                 </div>
             </div>
         </header>
@@ -224,66 +216,117 @@
 
         <footer class="w-full text-center pb-8">
             <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-3 mb-6 px-2">
-                <button onclick="openModal('tab-terms')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">תקנון</button>
+                <button onclick="openModal('tab-terms')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase focus:outline-none border-none bg-transparent cursor-pointer">תקנון ותנאי שימוש</button>
                 <span class="text-gray-700 text-xs">|</span>
-                <button onclick="openModal('tab-privacy')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">פרטיות</button>
+                <button onclick="openModal('tab-privacy')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase focus:outline-none border-none bg-transparent cursor-pointer">פרטיות</button>
                 <span class="text-gray-700 text-xs">|</span>
-                <button onclick="openModal('tab-cookies')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">עוגיות</button>
+                <button onclick="openModal('tab-cookies')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase focus:outline-none border-none bg-transparent cursor-pointer">עוגיות</button>
                 <span class="text-gray-700 text-xs">|</span>
-                <button onclick="openModal('tab-affiliate')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">גילוי נאות</button>
+                <button onclick="openModal('tab-affiliate')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase focus:outline-none border-none bg-transparent cursor-pointer">גילוי נאות</button>
             </div>
             <p class="text-[0.65rem] text-gray-600 font-light tracking-widest uppercase">&copy; 2026 ANIME PRIME</p>
         </footer>
     </main>
 
-    <!-- מודל ההפתעה -->
+    <!-- Accessibility Panel -->
+    <div id="accessibility-panel" class="hidden-panel panel-transition fixed bottom-24 left-6 bg-[#121418] rounded-2xl shadow-2xl p-5 w-[280px] z-[60] border border-[#2a2f38]">
+        <div class="flex items-center justify-between mb-4 border-b border-[#2a2f38] pb-3">
+            <h3 class="font-anime font-bold text-lg text-white">התאמת נגישות</h3>
+            <button id="close-accessibility" class="text-gray-500 hover:text-white border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div class="flex flex-col gap-2">
+            <div class="flex gap-2">
+                <button id="increase-font" class="flex-1 p-2 rounded-lg bg-[#1a1d24] text-xs text-gray-400 hover:text-white border-none cursor-pointer">הגדל טקסט</button>
+                <button id="decrease-font" class="flex-1 p-2 rounded-lg bg-[#1a1d24] text-xs text-gray-400 hover:text-white border-none cursor-pointer">הקטן טקסט</button>
+            </div>
+            <button id="toggle-contrast" class="w-full p-2.5 rounded-lg hover:bg-[#2a2f38] text-right text-gray-400 text-sm border-none cursor-pointer">ניגודיות גבוהה</button>
+            <button id="toggle-grayscale" class="w-full p-2.5 rounded-lg hover:bg-[#2a2f38] text-right text-gray-400 text-sm border-none cursor-pointer">גווני אפור</button>
+            <button id="toggle-highlight" class="w-full p-2.5 rounded-lg hover:bg-[#2a2f38] text-right text-gray-400 text-sm border-none cursor-pointer">הדגשת קישורים</button>
+            <button id="reset-accessibility" class="mt-2 w-full p-2.5 rounded-lg bg-red-600 text-white text-sm border-none cursor-pointer">איפוס הגדרות</button>
+        </div>
+    </div>
+
+    <!-- Floating UI Controls -->
+    <button id="accessibility-btn" class="fixed bottom-6 left-6 z-50 bg-[#121418] p-3.5 rounded-full border border-[#2a2f38] text-gray-400 hover:text-white shadow-xl cursor-pointer"><i data-lucide="accessibility" class="w-6 h-6"></i></button>
+    <button id="share-btn" class="fixed bottom-6 right-6 z-50 bg-[#121418] p-3.5 rounded-full border border-[#2a2f38] text-gray-400 hover:text-white shadow-xl cursor-pointer"><i data-lucide="share-2" class="w-6 h-6"></i></button>
+
+    <!-- Secret Goku Modal -->
     <div id="secret-modal" class="hidden-panel panel-transition fixed inset-0 z-[20000] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4">
-        <div class="bg-[#121418] border border-yellow-600/30 shadow-2xl rounded-2xl p-8 max-w-sm w-full text-center relative mt-32">
+        <div class="bg-[#121418] border border-yellow-600/30 shadow-2xl rounded-2xl p-8 max-sm:w-full text-center relative mt-32 max-w-sm">
             <img src="https://i.postimg.cc/tJSTMFwY/pngegg-(2).png" class="absolute bottom-full left-1/2 transform -translate-x-1/2 w-52 object-contain z-10 -mb-[1px]" alt="Goku">
-            
             <div class="pt-6">
-                <h2 class="font-anime text-xl text-yellow-500 font-bold mb-3 uppercase tracking-wide">ברכות, קוד סודי למימוש קופונים</h2>
-                <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">הקוד הופק בהצלחה ושמור במערכת:</p>
-                
+                <h2 class="font-anime text-xl text-yellow-500 font-bold mb-3 uppercase">ברכות, קוד סודי למימוש קופונים</h2>
                 <div class="flex items-center justify-between gap-4 mb-8 bg-black/50 p-4 rounded-xl border border-yellow-500/20 relative group">
                     <span id="copy-toast" class="copy-toast">הועתק!</span>
                     <span class="text-4xl font-anime font-bold tracking-widest text-white w-full text-center">1203</span>
-                    <button id="copy-btn-icon" onclick="copySecretCode()" class="text-yellow-500 p-2 hover:bg-yellow-500/10 rounded-lg transition-all absolute left-3"><i data-lucide="copy" class="w-5 h-5"></i></button>
+                    <button onclick="copySecretCode()" class="text-yellow-500 p-2 hover:bg-yellow-500/10 rounded-lg absolute left-3 border-none bg-transparent cursor-pointer"><i data-lucide="copy" class="w-5 h-5"></i></button>
                 </div>
-                
-                <a href="https://ro-projects.top/animeprime" target="_blank" class="w-full bg-white text-black font-bold py-3.5 rounded-xl block text-sm uppercase transition-transform active:scale-95">כניסה לאתר הרשמי</a>
+                <a href="https://ro-projects.top/animeprime" target="_blank" class="w-full bg-white text-black font-bold py-3.5 rounded-xl block text-sm uppercase no-underline">כניסה לאתר הרשמי</a>
+            </div>
+            <button onclick="closeSecretModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+    </div>
+
+    <!-- Legal Modal with General Content -->
+    <div id="privacy-modal" class="hidden-panel panel-transition fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#121418] rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-[#2a2f38] relative overflow-hidden">
+            <button onclick="closeModal()" class="absolute top-5 left-5 p-2 text-gray-500 hover:text-white z-20 border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
+            
+            <div class="pt-8 px-6 border-b border-[#2a2f38] text-center shrink-0">
+                <h2 class="text-2xl font-anime font-bold text-white mb-6 uppercase">מידע משפטי</h2>
+                <div class="flex w-full justify-around text-sm font-light pb-2 overflow-x-auto gap-4 no-scrollbar">
+                    <button class="tab-btn active whitespace-nowrap" id="btn-terms" onclick="switchTab('tab-terms', this)">תקנון ותנאי שימוש</button>
+                    <button class="tab-btn whitespace-nowrap" id="btn-privacy" onclick="switchTab('tab-privacy', this)">מדיניות פרטיות</button>
+                    <button class="tab-btn whitespace-nowrap" id="btn-cookies" onclick="switchTab('tab-cookies', this)">מדיניות עוגיות</button>
+                    <button class="tab-btn whitespace-nowrap" id="btn-affiliate" onclick="switchTab('tab-affiliate', this)">גילוי נאות</button>
+                </div>
+            </div>
+
+            <div class="p-6 overflow-y-auto text-sm text-gray-400 font-light text-right leading-relaxed h-full">
+                <!-- Terms of Use -->
+                <div id="tab-terms" class="tab-content block space-y-4">
+                    <p class="font-bold text-white text-lg underline">תקנון ותנאי שימוש</p>
+                    <p>ברוכים הבאים לאתר AnimePrime. גלישה באתר ושימוש בקישורים המופיעים בו מהווים הסכמה מלאה ובלתי חוזרת לתנאים המפורטים להלן:</p>
+                    <p><strong>1. שירותי האתר:</strong> האתר מספק שירותי המלצה, ריכוז קישורים ותוכן בתחום האספנות בלבד. האתר אינו מהווה חנות, אינו מבצע עסקאות מכר ישירות ואינו צד בכל התקשרות בין המשתמש לבין ספקים חיצוניים.</p>
+                    <p><strong>2. העדר אחריות:</strong> AnimePrime ובעליו אינם נושאים בכל אחריות ישירה או עקיפה למוצרים הנרכשים דרך הקישורים באתר. האחריות לטיב המוצר, תקינותו, זמני המשלוח, מדיניות החזרות ושירות לקוחות חלה באופן בלעדי על הספק החיצוני (כגון AliExpress) ועל המוכר הספציפי באתר היעד.</p>
+                    <p><strong>3. אימות נתונים:</strong> המידע המוצג באתר (מחירים, מפרטים, זמינות) נשען על נתונים המתקבלים מצדדים שלישיים. אנו פועלים לעדכנו, אך אין להסתמך עליו באופן בלעדי ויש לבדוק את הנתונים הסופיים באתר הספק לפני ביצוע כל רכישה.</p>
+                    <p><strong>4. שימוש אחראי:</strong> כל שימוש באתר ובמידע המוצג בו הוא על אחריות המשתמש בלבד. האתר לא יהיה אחראי לכל נזק, ישיר או עקיף, הנובע משימוש בתוכן המפורסם בו.</p>
+                    <p><strong>5. סמכות שיפוט:</strong> על תנאי שימוש אלו יחולו חוקי מדינת ישראל. סמכות השיפוט הבלעדית לכל עניין הנובע מהשימוש באתר תהא מסורה לבתי המשפט המוסמכים בישראל בלבד.</p>
+                </div>
+
+                <!-- Privacy Policy -->
+                <div id="tab-privacy" class="tab-content hidden space-y-4">
+                    <p class="font-bold text-white text-lg underline">מדיניות פרטיות</p>
+                    <p>אנו מכבדים את פרטיות הגולשים ופועלים על פי סטנדרטים מקובלים לשמירה על מידע:</p>
+                    <p><strong>1. מידע אנונימי:</strong> בעת הגלישה נאסף מידע טכני אנונימי (כגון סוג מכשיר, דפדפן וזמני שהייה) לצרכי שיפור חוויית המשתמש וסטטיסטיקה פנימית בלבד. מידע זה אינו מאפשר זיהוי אישי של הגולש.</p>
+                    <p><strong>2. העברת מידע לצד ג':</strong> האתר אינו אוסף או שומר מידע אישי מזהה ואינו מעביר מידע כזה לצדדים שלישיים. עם זאת, לחיצה על קישורים חיצוניים מעבירה אתכם לאתרים המפעילים מדיניות פרטיות משלהם שאינה בשליטתנו.</p>
+                    <p><strong>3. פניות לאתר:</strong> במידה ופנית אלינו באופן יזום, פרטי ההתקשרות ישמשו אך ורק למתן מענה לפנייתך ולא יועברו לגורמים זרים ללא הסכמתך.</p>
+                </div>
+
+                <!-- Cookie Policy -->
+                <div id="tab-cookies" class="tab-content hidden space-y-4">
+                    <p class="font-bold text-white text-lg underline">מדיניות עוגיות (Cookies)</p>
+                    <p>האתר משתמש בעוגיות לצורך תפעולו התקין:</p>
+                    <p><strong>1. מהן עוגיות?</strong> קבצי טקסט זעירים הנשמרים בדפדפן ומאפשרים למערכות לזהות את המשתמש ולשמור העדפות (כמו הגדרות נגישות).</p>
+                    <p><strong>2. עוגיות צד ג':</strong> אתרי היעד (כגון AliExpress) משתמשים בעוגיות כדי לזהות שהגעתם דרך הקישור שלנו לצורך תיעוד המכירה. מומלץ לעיין במדיניות העוגיות של אותם אתרים.</p>
+                    <p><strong>3. ניהול עוגיות:</strong> באפשרותך למחוק או לחסום עוגיות בכל עת דרך הגדרות הדפדפן שלך.</p>
+                </div>
+
+                <!-- Affiliate Disclosure -->
+                <div id="tab-affiliate" class="tab-content hidden space-y-4">
+                    <p class="font-bold text-white text-lg underline">גילוי נאות - תוכנית שותפים</p>
+                    <p>שקיפות מלאה היא חלק בלתי נפרד מהפעילות שלנו ב-AnimePrime:</p>
+                    <p><strong>1. קישורי שותפים:</strong> הקישורים המופיעים באתר הם בחלקם הגדול "קישורי שותפים". המשמעות היא שבמידה ותבצעו רכישה לאחר לחיצה על קישור, אנו עשויים לקבל עמלה קטנה מהמכירה.</p>
+                    <p><strong>2. השפעה על המחיר:</strong> חשוב להדגיש - העמלה משולמת לנו ישירות על ידי המוכר ואינה מוסיפה עלות נוספת למחיר המוצר עבורכם. לעיתים אנו אף מצליחים להשיג קופונים המורידים את המחיר המקורי.</p>
+                    <p><strong>3. אובייקטיביות:</strong> בחירת המוצרים המוצגים באתר נעשית על סמך איכות, ביקורות חיוביות ורלוונטיות לקהילת האספנים, ללא קשר לגובה העמלה.</p>
+                </div>
             </div>
             
-            <button onclick="closeSecretModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <div class="p-5 flex justify-center shrink-0 border-t border-[#2a2f38] bg-[#121418]">
+                <button onclick="closeModal()" class="elegant-btn !w-auto !px-12 !py-2.5 cursor-pointer border-none shadow-none"><span>הבנתי, תודה</span></button>
+            </div>
         </div>
     </div>
-
-    <!-- מודל מידע משפטי -->
-    <div id="privacy-modal" class="hidden-panel panel-transition fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-[#121418] rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-[#2a2f38] relative">
-            <button onclick="closeModal()" class="absolute top-5 left-5 p-2 text-gray-500 hover:text-white z-10"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div class="pt-8 px-6 border-b border-[#2a2f38] text-center flex flex-col items-center">
-                <h2 class="text-2xl font-anime font-bold text-white mb-6 uppercase">מידע משפטי</h2>
-                <div class="flex w-full justify-around text-sm font-light flex-wrap gap-y-2">
-                    <button class="tab-btn active pb-3 px-2 flex-1 focus:outline-none" data-target="tab-terms">תקנון</button>
-                    <button class="tab-btn pb-3 px-2 flex-1 focus:outline-none" data-target="tab-privacy">פרטיות</button>
-                    <button class="tab-btn pb-3 px-2 flex-1 focus:outline-none" data-target="tab-cookies">עוגיות</button>
-                    <button class="tab-btn pb-3 px-2 flex-1 focus:outline-none" data-target="tab-affiliate">גילוי נאות</button>
-                </div>
-            </div>
-            <div class="p-6 overflow-y-auto text-sm text-gray-400 font-light leading-relaxed text-right h-full">
-                <div id="tab-terms" class="tab-content block"><p>השימוש באתר מהווה הסכמה מלאה לתנאים. AnimePrime אינה מוכרת מוצרים ישירות אלא ממליצה בלבד.</p></div>
-                <div id="tab-privacy" class="tab-content hidden"><p>איננו אוספים מידע אישי מזהה ישירות בעמוד זה.</p></div>
-                <div id="tab-cookies" class="tab-content hidden"><p>אנו משתמשים בעוגיות טכניות לצורך חוויית משתמש בסיסית.</p></div>
-                <div id="tab-affiliate" class="tab-content hidden"><p>אנו עשויים לקבל עמלה על רכישות דרך הקישורים באתר. זה לא מייקר את המוצר עבורכם.</p></div>
-            </div>
-            <div class="p-5 flex justify-center shrink-0"><button onclick="closeModal()" class="elegant-btn !w-auto !px-12 !py-2.5"><span>סגור</span></button></div>
-        </div>
-    </div>
-
-    <!-- כפתורי צד -->
-    <button id="accessibility-btn" class="fixed bottom-6 left-6 z-50 bg-[#121418] p-3.5 rounded-full border border-[#2a2f38] text-gray-400 hover:text-white shadow-xl focus:outline-none"><i data-lucide="accessibility" class="w-6 h-6"></i></button>
-    <button id="share-btn" class="fixed bottom-6 right-6 z-50 bg-[#121418] p-3.5 rounded-full border border-[#2a2f38] text-gray-400 hover:text-white shadow-xl focus:outline-none"><i data-lucide="share-2" class="w-6 h-6"></i></button>
 
     <script>
         lucide.createIcons();
@@ -292,54 +335,99 @@
         function handleLogoClick() {
             clickCount++; clearTimeout(timer);
             timer = setTimeout(() => clickCount = 0, 1500);
-            if (clickCount >= 6) { clickCount = 0; startSSJTransformation(); }
+            if (clickCount >= 6) { 
+                clickCount = 0; 
+                document.body.classList.add('ssj-shake-active');
+                setTimeout(() => {
+                    document.body.classList.remove('ssj-shake-active');
+                    document.getElementById('secret-modal').classList.remove('hidden-panel');
+                    document.getElementById('secret-modal').classList.add('visible-panel');
+                }, 3000);
+            }
         }
 
-        function startSSJTransformation() {
-            // רעידה והבזק מלא על כל האתר
-            document.body.classList.add('ssj-shake-active');
+        // Modal & Tab Management
+        function openModal(tabId) {
+            const modal = document.getElementById('privacy-modal');
+            modal.classList.remove('hidden-panel');
+            modal.classList.add('visible-panel');
             
-            // המתנה של 3 שניות (ללא פס טעינה ויזואלי)
-            setTimeout(() => {
-                document.body.classList.remove('ssj-shake-active');
-                const secretModal = document.getElementById('secret-modal');
-                secretModal.classList.remove('hidden-panel');
-                secretModal.classList.add('visible-panel');
-            }, 3000);
+            // Activate the correct tab
+            const tabName = tabId.split('-')[1];
+            const targetBtn = document.getElementById('btn-' + tabName);
+            if(targetBtn) switchTab(tabId, targetBtn);
         }
+
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(c => {
+                c.classList.add('hidden');
+                c.classList.remove('block');
+            });
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            const content = document.getElementById(tabId);
+            if (content) {
+                content.classList.remove('hidden');
+                content.classList.add('block');
+            }
+            element.classList.add('active');
+        }
+
+        function closeModal() { 
+            const modal = document.getElementById('privacy-modal');
+            modal.classList.add('hidden-panel'); 
+            modal.classList.remove('visible-panel'); 
+        }
+        
+        function closeSecretModal() { 
+            const modal = document.getElementById('secret-modal');
+            modal.classList.add('hidden-panel'); 
+            modal.classList.remove('visible-panel'); 
+        }
+
+        // Accessibility Logic
+        const accPanel = document.getElementById('accessibility-panel');
+        document.getElementById('accessibility-btn').onclick = () => accPanel.classList.toggle('visible-panel');
+        document.getElementById('close-accessibility').onclick = () => accPanel.classList.remove('visible-panel');
+
+        let fontSize = 16;
+        document.getElementById('increase-font').onclick = () => { fontSize += 2; if(fontSize > 24) fontSize = 24; document.documentElement.style.fontSize = fontSize + 'px'; };
+        document.getElementById('decrease-font').onclick = () => { fontSize -= 2; if(fontSize < 12) fontSize = 12; document.documentElement.style.fontSize = fontSize + 'px'; };
+        document.getElementById('toggle-contrast').onclick = () => document.documentElement.classList.toggle('high-contrast');
+        document.getElementById('toggle-grayscale').onclick = () => document.documentElement.classList.toggle('grayscale-mode');
+        document.getElementById('toggle-highlight').onclick = () => document.documentElement.classList.toggle('highlight-links');
+        document.getElementById('reset-accessibility').onclick = () => {
+            fontSize = 16; document.documentElement.style.fontSize = '16px';
+            document.documentElement.className = '';
+        };
 
         function copySecretCode() {
-            const el = document.createElement('textarea'); el.value = "1203";
-            document.body.appendChild(el); el.select(); document.execCommand('copy');
+            const el = document.createElement('textarea'); 
+            el.value = "1203";
+            document.body.appendChild(el); 
+            el.select(); 
+            document.execCommand('copy');
             document.body.removeChild(el);
             const toast = document.getElementById('copy-toast');
-            toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000);
-            const btnIcon = document.getElementById('copy-btn-icon');
-            btnIcon.innerHTML = '<i data-lucide="check" class="w-5 h-5 text-green-400"></i>';
-            lucide.createIcons();
-            setTimeout(() => { btnIcon.innerHTML = '<i data-lucide="copy" class="w-5 h-5"></i>'; lucide.createIcons(); }, 2000);
+            toast.classList.add('show'); 
+            setTimeout(() => toast.classList.remove('show'), 2000);
         }
 
-        function openModal(id) {
-            const modal = document.getElementById('privacy-modal');
-            const tabs = document.querySelectorAll('.tab-btn');
-            const contents = document.querySelectorAll('.tab-content');
-            tabs.forEach(t => t.classList.remove('active')); contents.forEach(c => {c.classList.add('hidden'); c.classList.remove('block');});
-            document.querySelector(`[data-target="${id}"]`).classList.add('active');
-            document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('block');
-            modal.classList.remove('hidden-panel'); modal.classList.add('visible-panel');
-        }
-
-        function closeModal() { document.getElementById('privacy-modal').classList.remove('visible-panel'); document.getElementById('privacy-modal').classList.add('hidden-panel'); }
-        function closeSecretModal() { document.getElementById('secret-modal').classList.remove('visible-panel'); document.getElementById('secret-modal').classList.add('hidden-panel'); }
-
-        document.getElementById('share-btn').addEventListener('click', async () => {
-            if (navigator.share) { try { await navigator.share({ title: 'AnimePrime', url: window.location.href }); } catch (err) {} }
-            else { 
-                const el = document.createElement('textarea'); el.value = window.location.href; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+        document.getElementById('share-btn').onclick = async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title: 'AnimePrime', url: window.location.href });
+                } catch (err) {}
+            } else { 
+                const el = document.createElement('textarea'); 
+                el.value = window.location.href; 
+                document.body.appendChild(el); 
+                el.select(); 
+                document.execCommand('copy'); 
+                document.body.removeChild(el);
                 alert('הקישור הועתק!'); 
             }
-        });
+        };
     </script>
 </body>
 </html>
