@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- === הגדרות לקידום בגוגל (SEO) === -->
+    <title>AnimePrime | קהילת אספני האנימה של ישראל</title>
+    <meta name="description" content="קהילת אספני האנימה של ישראל! המלצות, דילים וקישורים לפיגרים נדירים מעליאקספרס.">
+    <meta name="keywords" content="אנימה, וואן פיס, נארוטו, דרגון בול, פיגרים, אליאקספרס, קופונים, דילים, אספנות">
+    <meta name="author" content="AnimePrime">
+    
+    <!-- Tailwind CSS & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Heebo:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --bg-bottom: #0a0b0e; 
+            --text-light: #f3f4f6; 
+            --btn-bg: #161a20; 
+            --btn-text: #ffffff; 
+            --accent: #dc2626; 
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif; 
+            color: var(--text-light);
+            background-color: var(--bg-bottom);
+            position: relative;
+        }
+
+        .font-anime { font-family: 'Outfit', sans-serif; }
+
+        .split-bg {
+            position: absolute; 
+            top: 0; left: 0; right: 0;
+            height: 220px; 
+            background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); 
+            z-index: -1;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* === עיצוב כפתורי פרימיום כהים === */
+        .elegant-btn {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border-radius: 12px;
+            padding: 1.1rem 1.5rem;
+            width: 100%;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .elegant-btn:hover {
+            transform: translateY(-4px);
+            background-color: #1c2128;
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
+        }
+
+        .elegant-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 8s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            15% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        /* === אנימציית גיצים עשירה === */
+        .ember {
+            position: absolute;
+            bottom: -20px;
+            background: radial-gradient(circle, #ffeb3b 0%, #ff9800 40%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(1.5px);
+            animation: float-ember infinite ease-in;
+            opacity: 0;
+        }
+        @keyframes float-ember {
+            0% { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
+            15% { opacity: 0.7; }
+            50% { transform: translateY(-110px) scale(0.8) translateX(30px); }
+            85% { opacity: 0; }
+            100% { transform: translateY(-200px) scale(0.4) translateX(-20px); opacity: 0; }
+        }
+
+        /* === בועית הועתק === */
+        .copy-toast {
+            position: absolute;
+            bottom: 120%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: #10b981; color: white; padding: 6px 14px; border-radius: 10px;
+            font-size: 0.8rem; font-weight: bold; opacity: 0; transition: all 0.3s ease;
+            pointer-events: none; box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
+            white-space: nowrap; z-index: 50;
+        }
+        .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* === אפקט סופר סאייה קלאסי === */
+        .ssj-shake-active { animation: ssj-shake 0.1s infinite; }
+        .ssj-shake-active::before {
+            content: ''; 
+            position: fixed; 
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, rgba(253,224,71,0.2) 0%, rgba(253,224,71,0.05) 100%);
+            z-index: 10000;
+            pointer-events: none; 
+            animation: ssj-flash 0.05s infinite alternate;
+        }
+        @keyframes ssj-shake {
+            0% { transform: translate(2px, 1px) rotate(0deg); }
+            50% { transform: translate(-2px, -1px) rotate(-0.5deg); }
+            100% { transform: translate(1px, 2px) rotate(0.5deg); }
+        }
+        @keyframes ssj-flash {
+            0% { background-color: rgba(255, 255, 255, 0.15); }
+            100% { background-color: rgba(253, 224, 71, 0.3); box-shadow: inset 0 0 150px rgba(253,224,71,0.4); }
+        }
+
+        .tab-btn { position: relative; transition: all 0.3s ease; color: #9ca3af; padding-bottom: 8px; }
+        .tab-btn.active { color: #ffffff; font-weight: bold; }
+        .tab-btn.active::after { content:''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background-color: #dc2626; border-radius: 2px; }
+
+        .hidden-panel { opacity: 0; pointer-events: none; transform: translateY(10px); }
+        .visible-panel { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .panel-transition { transition: all 0.4s ease-out; }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+    </style>
+</head>
+<body class="flex flex-col items-center pb-12 px-5">
+
+    <div class="split-bg overflow-hidden">
+        <!-- מערך גיצים מוגבר -->
+        <div class="ember" style="left: 5%; animation-duration: 3s; animation-delay: 0.1s; width: 4px; height: 4px;"></div>
+        <div class="ember" style="left: 12%; animation-duration: 4.5s; animation-delay: 0.5s; width: 6px; height: 6px;"></div>
+        <div class="ember" style="left: 20%; animation-duration: 3.2s; animation-delay: 1.2s; width: 3px; height: 3px;"></div>
+        <div class="ember" style="left: 28%; animation-duration: 5s; animation-delay: 0.8s; width: 5px; height: 5px;"></div>
+        <div class="ember" style="left: 35%; animation-duration: 3.8s; animation-delay: 2s; width: 4px; height: 4px;"></div>
+        <div class="ember" style="left: 42%; animation-duration: 4.2s; animation-delay: 0.3s; width: 7px; height: 7px;"></div>
+        <div class="ember" style="left: 50%; animation-duration: 3.5s; animation-delay: 1.5s; width: 5px; height: 5px;"></div>
+        <div class="ember" style="left: 58%; animation-duration: 4.8s; animation-delay: 0.7s; width: 3px; height: 3px;"></div>
+        <div class="ember" style="left: 65%; animation-duration: 3.1s; animation-delay: 2.2s; width: 6px; height: 6px;"></div>
+        <div class="ember" style="left: 75%; animation-duration: 5.5s; animation-delay: 1.1s; width: 4px; height: 4px;"></div>
+        <div class="ember" style="left: 82%; animation-duration: 3.9s; animation-delay: 0.2s; width: 5px; height: 5px;"></div>
+        <div class="ember" style="left: 90%; animation-duration: 4.4s; animation-delay: 1.8s; width: 4px; height: 4px;"></div>
+        <div class="ember" style="left: 95%; animation-duration: 3.3s; animation-delay: 0.9s; width: 6px; height: 6px;"></div>
+    </div>
+
+    <main class="w-full max-w-[28rem] mx-auto flex flex-col items-center z-10 relative mt-[220px]">
+        
+        <header class="flex flex-col items-center text-center mb-8 w-full">
+            <div class="w-64 h-64 md:w-72 md:h-72 relative z-10 -mt-32 md:-mt-36 mb-1" onclick="handleLogoClick()" style="cursor: pointer; user-select: none;">
+                <img src="https://i.postimg.cc/FHJ92CpP/Anime-Prime-Logo-NObackraound-(1).png" alt="לוגו AnimePrime" class="w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] active:scale-95 transition-transform">
+            </div>
+            
+            <div class="text-yellow-500/20 text-[0.60rem] font-bold tracking-widest uppercase mb-4 -mt-6 pointer-events-none font-anime">לחצו על הלוגו 6 פעמים במהירות</div>
+            
+            <h1 class="font-anime text-4xl md:text-5xl font-black tracking-wider mb-2 text-white uppercase mt-2">ANIME PRIME</h1>
+            <h2 class="text-[0.65rem] md:text-xs tracking-widest-xl uppercase text-gray-400 font-medium mb-8">משווק מורשה אליאקספרס</h2>
+            
+            <div class="flex justify-center gap-7 mb-8 text-gray-300">
+                <a href="https://t.me/AnimePrime93" target="_blank" class="hover:text-red-500 transition-all"><i data-lucide="send" class="w-5 h-5"></i></a>
+                <a href="https://www.tiktok.com/@animeprime" target="_blank" class="hover:text-red-500 transition-all"><svg viewBox="0 0 448 512" fill="currentColor" class="w-4 h-5"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg></a>
+                <a href="https://ro-projects.top/animeprime" target="_blank" class="hover:text-red-500 transition-all"><i data-lucide="globe" class="w-5 h-5"></i></a>
+            </div>
+            
+            <div class="text-gray-400 text-sm md:text-base font-light px-2 leading-relaxed max-w-lg mx-auto mb-4 text-right">
+                <p class="text-center mb-8 px-4">
+                    <strong class="text-white font-anime text-lg md:text-xl tracking-wide">קהילת אספני האנימה של ישראל</strong><br>
+                    <span class="block mt-3 text-center">ברוכים הבאים למקום שבו אספנות הופכת לתשוקה אמיתית. אם גם אתם חיים ונושמים אנימה — וואן פיס, נארוטו, דרגון בול, דימון סלייר, ג'וג'וטסו קאיזן ועוד — הגעתם בדיוק למקום הנכון.</span>
+                </p>
+
+                <div class="relative z-10 bg-gradient-to-br from-[#1a1d24]/95 to-[#121418]/95 rounded-2xl p-6 md:p-8 border border-[#2a2f38] mb-8 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-6">
+                    <img src="https://i.postimg.cc/3JCcMnxZ/pngegg-(1).png" alt="Dragon Ball" class="absolute -top-6 -left-4 w-20 h-20 object-contain drop-shadow-[0_8px_15px_rgba(0,0,0,0.7)] transform -rotate-12 pointer-events-none">
+                    <h3 class="text-white font-anime text-lg md:text-xl font-bold mb-6 flex items-center justify-start gap-3"><i data-lucide="sparkles" class="w-5 h-5 text-red-500"></i>מה מחכה לכם כאן?</h3>
+                    <ul class="space-y-4 pr-1 text-right">
+                        <li class="flex items-start gap-3"><i data-lucide="crosshair" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">המלצות מדויקות על פיגרים איכותיים</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="zap" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">דילים משתלמים במיוחד שלא תרצו לפספס</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="link" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">קישורים ישירים להזמנה קלה ומהירה</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="gem" class="w-4 h-4 text-red-500 mt-1"></i><span class="text-gray-300">פריטים ייחודיים שנבחרו בקפידה לאספנים אמיתיים</span></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <nav class="w-full flex flex-col gap-4 mb-16">
+            <a href="https://t.me/AnimePrime93" target="_blank" class="elegant-btn"><span>הצטרפו לערוץ הטלגרם</span></a>
+            <a href="https://www.tiktok.com/@animeprime" target="_blank" class="elegant-btn"><span>עקבו אחרינו בטיקטוק</span></a>
+            <a href="https://ro-projects.top/animeprime" target="_blank" class="elegant-btn"><span>האתר הרשמי - קופונים ודילים</span></a>
+            <a href="https://s.click.aliexpress.com/e/_c2QId99N" target="_blank" class="elegant-btn"><span>מבצעים באליאקספרס</span></a>
+        </nav>
+
+        <footer class="w-full text-center pb-8">
+            <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-3 mb-6 px-2">
+                <button onclick="openModal('tab-terms')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">תקנון</button>
+                <span class="text-gray-700 text-xs">|</span>
+                <button onclick="openModal('tab-privacy')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">פרטיות</button>
+                <span class="text-gray-700 text-xs">|</span>
+                <button onclick="openModal('tab-cookies')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">עוגיות</button>
+                <span class="text-gray-700 text-xs">|</span>
+                <button onclick="openModal('tab-affiliate')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase">גילוי נאות</button>
+            </div>
+            <p class="text-[0.65rem] text-gray-600 font-light tracking-widest uppercase">&copy; 2026 ANIME PRIME</p>
+        </footer>
+    </main>
+
+    <!-- מודל ההפתעה -->
+    <div id="secret-modal" class="hidden-panel panel-transition fixed inset-0 z-[20000] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4">
+        <div class="bg-[#121418] border border-yellow-600/30 shadow-2xl rounded-2xl p-8 max-w-sm w-full text-center relative mt-32">
+            <img src="https://i.postimg.cc/tJSTMFwY/pngegg-(2).png" class="absolute bottom-full left-1/2 transform -translate-x-1/2 w-52 object-contain z-10 -mb-[1px]" alt="Goku">
+            
+            <div class="pt-6">
+                <h2 class="font-anime text-xl text-yellow-500 font-bold mb-3 uppercase tracking-wide">ברכות, קוד סודי למימוש קופונים</h2>
+                <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">הקוד הופק בהצלחה ושמור במערכת:</p>
+                
+                <div class="flex items-center justify-between gap-4 mb-8 bg-black/50 p-4 rounded-xl border border-yellow-500/20 relative group">
+                    <span id="copy-toast" class="copy-toast">הועתק!</span>
+                    <span class="text-4xl font-anime font-bold tracking-widest text-white w-full text-center">1203</span>
+                    <button id="copy-btn-icon" onclick="copySecretCode()" class="text-yellow-500 p-2 hover:bg-yellow-500/10 rounded-lg transition-all absolute left-3"><i data-lucide="copy" class="w-5 h-5"></i></button>
+                </div>
+                
+                <a href="https://ro-projects.top/animeprime" target="_blank" class="w-full bg-white text-black font-bold py-3.5 rounded-xl block text-sm uppercase transition-transform active:scale-95">כניסה לאתר הרשמי</a>
+            </div>
+            
+            <button onclick="closeSecretModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+    </div>
+
+    <!-- מודל מידע משפטי -->
+    <div id="privacy-modal" class="hidden-panel panel-transition fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#121418] rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-[#2a2f38] relative">
+            <button onclick="closeModal()" class="absolute top-5 left-5 p-2 text-gray-500 hover:text-white z-10"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <div class="pt-8 px-6 border-b border-[#2a2f38] text-center flex flex-col items-center">
+                <h2 class="text-2xl font-anime font-bold text-white mb-6 uppercase">מידע משפטי</h2>
+                <div class="flex w-full justify-around text-sm font-light flex-wrap gap-y-2">
+                    <button class="tab-btn active pb-3 px-2 flex-1 focus:outline-none" data-target="tab-terms">תקנון</button>
+                    <button class="tab-btn pb-3 px-2 flex-1 focus:outline-none" data-target="tab-privacy">פרטיות</button>
+                    <button class="tab-btn pb-3 px-2 flex-1 focus:outline-none" data-target="tab-cookies">עוגיות</button>
+                    <button class="tab-btn pb-3 px-2 flex-1 focus:outline-none" data-target="tab-affiliate">גילוי נאות</button>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto text-sm text-gray-400 font-light leading-relaxed text-right h-full">
+                <div id="tab-terms" class="tab-content block"><p>השימוש באתר מהווה הסכמה מלאה לתנאים. AnimePrime אינה מוכרת מוצרים ישירות אלא ממליצה בלבד.</p></div>
+                <div id="tab-privacy" class="tab-content hidden"><p>איננו אוספים מידע אישי מזהה ישירות בעמוד זה.</p></div>
+                <div id="tab-cookies" class="tab-content hidden"><p>אנו משתמשים בעוגיות טכניות לצורך חוויית משתמש בסיסית.</p></div>
+                <div id="tab-affiliate" class="tab-content hidden"><p>אנו עשויים לקבל עמלה על רכישות דרך הקישורים באתר. זה לא מייקר את המוצר עבורכם.</p></div>
+            </div>
+            <div class="p-5 flex justify-center shrink-0"><button onclick="closeModal()" class="elegant-btn !w-auto !px-12 !py-2.5"><span>סגור</span></button></div>
+        </div>
+    </div>
+
+    <!-- כפתורי צד -->
+    <button id="accessibility-btn" class="fixed bottom-6 left-6 z-50 bg-[#121418] p-3.5 rounded-full border border-[#2a2f38] text-gray-400 hover:text-white shadow-xl focus:outline-none"><i data-lucide="accessibility" class="w-6 h-6"></i></button>
+    <button id="share-btn" class="fixed bottom-6 right-6 z-50 bg-[#121418] p-3.5 rounded-full border border-[#2a2f38] text-gray-400 hover:text-white shadow-xl focus:outline-none"><i data-lucide="share-2" class="w-6 h-6"></i></button>
+
+    <script>
+        lucide.createIcons();
+        let clickCount = 0; let timer;
+
+        function handleLogoClick() {
+            clickCount++; clearTimeout(timer);
+            timer = setTimeout(() => clickCount = 0, 1500);
+            if (clickCount >= 6) { clickCount = 0; startSSJTransformation(); }
+        }
+
+        function startSSJTransformation() {
+            // רעידה והבזק מלא על כל האתר
+            document.body.classList.add('ssj-shake-active');
+            
+            // המתנה של 3 שניות (ללא פס טעינה ויזואלי)
+            setTimeout(() => {
+                document.body.classList.remove('ssj-shake-active');
+                const secretModal = document.getElementById('secret-modal');
+                secretModal.classList.remove('hidden-panel');
+                secretModal.classList.add('visible-panel');
+            }, 3000);
+        }
+
+        function copySecretCode() {
+            const el = document.createElement('textarea'); el.value = "1203";
+            document.body.appendChild(el); el.select(); document.execCommand('copy');
+            document.body.removeChild(el);
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000);
+            const btnIcon = document.getElementById('copy-btn-icon');
+            btnIcon.innerHTML = '<i data-lucide="check" class="w-5 h-5 text-green-400"></i>';
+            lucide.createIcons();
+            setTimeout(() => { btnIcon.innerHTML = '<i data-lucide="copy" class="w-5 h-5"></i>'; lucide.createIcons(); }, 2000);
+        }
+
+        function openModal(id) {
+            const modal = document.getElementById('privacy-modal');
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            tabs.forEach(t => t.classList.remove('active')); contents.forEach(c => {c.classList.add('hidden'); c.classList.remove('block');});
+            document.querySelector(`[data-target="${id}"]`).classList.add('active');
+            document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('block');
+            modal.classList.remove('hidden-panel'); modal.classList.add('visible-panel');
+        }
+
+        function closeModal() { document.getElementById('privacy-modal').classList.remove('visible-panel'); document.getElementById('privacy-modal').classList.add('hidden-panel'); }
+        function closeSecretModal() { document.getElementById('secret-modal').classList.remove('visible-panel'); document.getElementById('secret-modal').classList.add('hidden-panel'); }
+
+        document.getElementById('share-btn').addEventListener('click', async () => {
+            if (navigator.share) { try { await navigator.share({ title: 'AnimePrime', url: window.location.href }); } catch (err) {} }
+            else { 
+                const el = document.createElement('textarea'); el.value = window.location.href; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+                alert('הקישור הועתק!'); 
+            }
+        });
+    </script>
+</body>
+</html>
