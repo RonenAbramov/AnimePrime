@@ -32,7 +32,6 @@
         html.light-theme body { background-color: #f3f4f6 !important; color: #111827 !important; }
         html.light-theme h1, html.light-theme h2, html.light-theme h3, html.light-theme strong, html.light-theme p, html.light-theme span { color: #111827 !important; }
         html.light-theme .header-bg-section { background: #e5e7eb !important; }
-        html.light-theme .elegant-btn { background-color: #ffffff !important; color: #000 !important; border: 2px solid #000 !important; }
 
         html { scroll-behavior: smooth; }
 
@@ -59,6 +58,50 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
             overflow: hidden;
         }
+
+        /* --- DRAGON BALL DECORATION STYLES --- */
+        
+        @keyframes db-float-decor {
+            0% { transform: translate(0, 0); }
+            33% { transform: translate(12px, -8px); }
+            66% { transform: translate(-8px, 12px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .dragon-ball-wrap {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            pointer-events: none; /* No touch interaction */
+            user-select: none;
+            opacity: 1;
+            position: absolute;
+        }
+        
+        .dragon-ball-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Calibration for visual uniformity based on 2-star ball */
+        .ball-img-1 { transform: scale(1.1); }
+        .ball-img-2 { transform: scale(1.4); } 
+        .ball-img-3 { transform: scale(1.4); }
+        .ball-img-4 { transform: scale(1.15); }
+        .ball-img-5 { transform: scale(1.25); }
+        .ball-img-6 { transform: scale(2.0); }
+        .ball-img-7 { transform: scale(1.1); }
+
+        .floating {
+            animation: db-float-decor 7s infinite ease-in-out;
+        }
+
+        /* -------------------------------------- */
 
         .ember {
             position: absolute; bottom: -20px;
@@ -134,6 +177,30 @@
 <body class="relative">
 
     <div class="header-bg-section">
+        <!-- Floating Dragon Balls as background decor -->
+        <div class="dragon-ball-wrap floating" style="top: 20px; right: 15%; animation-delay: 0s;">
+            <img src="https://i.postimg.cc/qRMQfQKs/pngegg-(6).png" class="ball-img-3" alt="3 stars">
+        </div>
+        <div class="dragon-ball-wrap floating" style="top: 120px; left: 10%; animation-delay: -1.5s;">
+            <img src="https://i.postimg.cc/Y9q8c8FJ/pngegg-(7).png" class="ball-img-5" alt="5 stars">
+        </div>
+        <div class="dragon-ball-wrap floating" style="top: 50px; left: 45%; animation-delay: -3s;">
+            <img src="https://i.postimg.cc/j5gcRN69/pngegg-(8).png" class="ball-img-6" alt="6 stars">
+        </div>
+        <div class="dragon-ball-wrap floating" style="top: 100px; right: 35%; animation-delay: -4.5s;">
+            <img src="https://i.postimg.cc/3JCcMnxZ/pngegg-(1).png" class="ball-img-4" alt="4 stars">
+        </div>
+        <div class="dragon-ball-wrap floating" style="top: 40px; left: 25%; animation-delay: -2s;">
+            <img src="https://i.postimg.cc/ZnWcnRVD/pngegg-(9).png" class="ball-img-7" alt="7 stars">
+        </div>
+        <div class="dragon-ball-wrap floating" style="top: 130px; right: 8%; animation-delay: -0.5s;">
+            <img src="https://i.postimg.cc/HnFtygNG/pngegg-(10).png" class="ball-img-1" alt="1 star">
+        </div>
+        <div class="dragon-ball-wrap floating" style="top: 70px; right: 20%; animation-delay: -5s;">
+            <img src="https://i.postimg.cc/NGnDV6jR/pngegg-(11).png" class="ball-img-2" alt="2 stars">
+        </div>
+
+        <!-- Embers -->
         <div class="ember" style="left: 10%; animation-duration: 4s; animation-delay: 0.2s; width: 4px; height: 4px;"></div>
         <div class="ember" style="left: 30%; animation-duration: 5s; animation-delay: 1.5s; width: 6px; height: 6px;"></div>
         <div class="ember" style="left: 60%; animation-duration: 3.5s; animation-delay: 0.5s; width: 3px; height: 3px;"></div>
@@ -162,9 +229,9 @@
                     <span class="block mt-4 text-center">ברוכים הבאים למקום שבו אספנות הופכת לתשוקה אמיתית.<br>אם גם אתם חיים ונושמים אנימה — וואן פיס, נארוטו, דרגון בול, דימון סלייר, ג'וג'וטסו קאיזן ועוד — הגעתם בדיוק למקום הנכון.</span>
                 </p>
 
-                <div class="relative z-10 bg-[#161a20]/95 rounded-2xl p-7 md:p-8 border border-[#2a2f38] mb-12 shadow-[0_10px_40px_rgba(0,0,0,0.5)] mx-3">
+                <div class="relative z-10 bg-[#161a20]/95 rounded-2xl p-7 md:p-8 border border-[#2a2f38] mb-12 shadow-[0_10px_40px_rgba(0,0,0,0.5)] mx-3 text-right">
                     <h3 class="text-white font-anime text-lg md:text-xl font-bold mb-6 flex items-center justify-start gap-3"><i data-lucide="sparkles" class="w-5 h-5 text-red-500"></i>מה מחכה לכם כאן?</h3>
-                    <ul class="space-y-4 pr-1 text-right">
+                    <ul class="space-y-4 pr-1">
                         <li class="flex items-start gap-3"><i data-lucide="crosshair" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">המלצות מדויקות על פיגרים איכותיים</span></li>
                         <li class="flex items-start gap-3"><i data-lucide="zap" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">דילים משתלמים במיוחד שלא תרצו לפספס</span></li>
                         <li class="flex items-start gap-3"><i data-lucide="link" class="w-4 h-4 text-red-500 mt-1 shrink-0"></i><span class="text-gray-300">קישורים ישירים להזמנה קלה ומהירה</span></li>
@@ -181,14 +248,14 @@
             </div>
         </header>
 
-        <nav class="w-full flex flex-col gap-4 mb-16 relative px-5">
+        <nav class="w-full flex flex-col gap-4 mb-20 relative px-5">
             <a href="https://t.me/AnimePrime93" target="_blank" class="elegant-btn telegram-highlight"><span>הצטרפו לערוץ הטלגרם</span></a>
             <a href="https://www.tiktok.com/@ronenabramov93" target="_blank" class="elegant-btn"><span>עקבו אחרינו בטיקטוק</span></a>
             <a href="https://ro-projects.top/animeprime" target="_blank" class="elegant-btn"><span>האתר הרשמי - קופונים ודילים</span></a>
             <a href="https://s.click.aliexpress.com/e/_c2QId99N" target="_blank" class="elegant-btn border-red-900/30"><span>מבצעים באליאקספרס</span></a>
         </nav>
 
-        <!-- === סקשן לקוחות מספרים === -->
+        <!-- === סקשן לקוחות מספרים (שחזור מלא) === -->
         <section class="w-full px-5 mb-20 text-right">
             <h3 class="text-white font-anime text-lg font-bold mb-8 flex items-center justify-start gap-2 border-r-4 border-red-600 pr-3 uppercase">מה הקהילה אומרת?</h3>
             
@@ -206,7 +273,7 @@
                         <span class="text-white font-bold text-sm">איתי כהן</span>
                         <div class="flex text-yellow-500 gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed">"מצאתי פיגורה של זורו (וואן פיס) בחצי מחיר ממה שראיתי בחנויות בארץ. הלינקים של אליאקספרס פה באמת אמינים."</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">"מצאתי פיגורה של זורו (וואן פיס) בחצי מחיר ממה שראיתי בחנויות בארץ. הלינקים של אליאקספרס פה באמת אמינים והכל הגיע ארוז מושלם."</p>
                 </div>
 
                 <div class="review-card">
@@ -222,7 +289,7 @@
                         <span class="text-white font-bold text-sm">דניאל מזרחי</span>
                         <div class="flex text-yellow-500 gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed">"סוף סוף מישהו שעושה סדר בכל הלינקים הזבל שיש באליאקספרס. פה מקבלים רק את הדירוגים הכי גבוהים."</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">"סוף סוף מישהו שעושה סדר בכל הלינקים הזבל שיש באליאקספרס. פה מקבלים רק את הדירוגים הכי גבוהים. פרגון ענק!"</p>
                 </div>
 
                 <div class="review-card">
@@ -246,7 +313,7 @@
                         <span class="text-white font-bold text-sm">גל רפאלי</span>
                         <div class="flex text-yellow-500 gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed">"תודה על המענה המהיר בטלגרם. באמת הקישורים הכי טובים שיש היום לאספני אנימה."</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">"תודה על המענה המהיר בטלגרם כששאלתי על מוכר ספציפי. באמת הקישורים הכי טובים שיש היום לאספני אנימה."</p>
                 </div>
 
                 <div class="review-card">
@@ -254,7 +321,7 @@
                         <span class="text-white font-bold text-sm">עמית סופר</span>
                         <div class="flex text-yellow-500 gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i><i data-lucide="star" class="w-3 h-3 fill-current"></i></div>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed">"חוסך לי המון זמן של חיפושים. פשוט נכנס לערוץ ובוחר מה שבא לי, הכל עובר סינון קפדני."</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">"חוסך לי המון זמן של חיפושים. פשוט נכנס לערוץ ובוחר מה שבא לי, יודע שזה יעבור סינון שלכם."</p>
                 </div>
 
                 <div class="review-card">
@@ -281,38 +348,38 @@
         </footer>
     </main>
 
-    <!-- UI Buttons -->
+    <!-- Floating UI -->
     <button id="accessibility-btn" class="fixed bottom-6 left-6 z-[100] bg-[#121418] p-3.5 rounded-full border border-gray-800 text-gray-400 hover:text-white shadow-xl cursor-pointer"><i data-lucide="accessibility" class="w-6 h-6"></i></button>
     <button onclick="shareSite()" class="fixed bottom-6 right-6 z-[100] bg-[#121418] p-3.5 rounded-full border border-gray-800 text-gray-400 hover:text-red-500 shadow-xl cursor-pointer transition-all"><i data-lucide="share-2" class="w-6 h-6"></i></button>
 
     <!-- Accessibility Panel -->
-    <div id="accessibility-panel" class="hidden-panel panel-transition fixed bottom-24 left-6 bg-[#121418] rounded-2xl shadow-2xl p-6 w-[290px] z-[110] border border-gray-800">
+    <div id="accessibility-panel" class="hidden-panel panel-transition fixed bottom-24 left-6 bg-[#121418] rounded-2xl shadow-2xl p-6 w-[290px] z-[110] border border-gray-800 text-right">
         <div class="flex items-center justify-between mb-5 border-b border-gray-800 pb-4">
             <h3 class="font-anime font-bold text-lg text-white">התאמת נגישות</h3>
             <button id="close-accessibility" class="text-gray-500 hover:text-white border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
         <div class="flex flex-col gap-3">
             <div class="flex gap-2">
-                <button id="increase-font" class="flex-1 p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-xs border-none cursor-pointer">הגדל טקסט</button>
-                <button id="decrease-font" class="flex-1 p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-xs border-none cursor-pointer">הקטן טקסט</button>
+                <button onclick="changeFontSize(2)" class="flex-1 p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-xs border-none cursor-pointer hover:bg-gray-800">הגדל טקסט</button>
+                <button onclick="changeFontSize(-2)" class="flex-1 p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-xs border-none cursor-pointer hover:bg-gray-800">הקטן טקסט</button>
             </div>
             <div class="grid grid-cols-2 gap-2">
-                <button id="toggle-contrast" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">ניגודיות</button>
-                <button id="toggle-grayscale" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">גווני אפור</button>
-                <button id="toggle-links" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">קישורים</button>
-                <button id="toggle-font" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">פונט קריא</button>
-                <button id="toggle-animations" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">עצור אנימציה</button>
-                <button id="toggle-light" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">רקע בהיר</button>
+                <button id="toggle-contrast" class="p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-[0.75rem] border-none cursor-pointer hover:bg-gray-800">ניגודיות</button>
+                <button id="toggle-grayscale" class="p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-[0.75rem] border-none cursor-pointer hover:bg-gray-800">גווני אפור</button>
+                <button id="toggle-links" class="p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-[0.75rem] border-none cursor-pointer hover:bg-gray-800">קישורים</button>
+                <button id="toggle-font" class="p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-[0.75rem] border-none cursor-pointer hover:bg-gray-800">פונט קריא</button>
+                <button id="toggle-animations" class="p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-[0.75rem] border-none cursor-pointer hover:bg-gray-800">עצור אנימציה</button>
+                <button id="toggle-light" class="p-2.5 rounded-lg bg-[#1a1d24] text-gray-400 text-[0.75rem] border-none cursor-pointer hover:bg-gray-800">רקע בהיר</button>
             </div>
-            <button id="reset-accessibility" class="mt-2 w-full p-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-sm border-none cursor-pointer transition-colors">איפוס הגדרות</button>
+            <button id="reset-accessibility" class="mt-2 w-full p-3 rounded-lg bg-red-600 text-white font-bold text-sm border-none cursor-pointer transition-colors hover:bg-red-700">איפוס הגדרות</button>
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- Legal Modal (Full Text Restoration) -->
     <div id="privacy-modal" class="hidden-panel panel-transition fixed inset-0 z-[200] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-[#121418] rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-gray-800 relative overflow-hidden">
             <button onclick="closeModal()" class="absolute top-5 left-5 p-2 text-gray-500 hover:text-white z-20 border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div class="pt-10 px-8 border-b border-[#2a2f38] text-center shrink-0">
+            <div class="pt-10 px-8 border-b border-gray-800 text-center shrink-0">
                 <h2 class="text-2xl font-anime font-bold text-white mb-8 uppercase">מידע משפטי</h2>
                 <div class="flex w-full justify-around text-sm font-light pb-2 overflow-x-auto gap-4 no-scrollbar">
                     <button class="tab-btn whitespace-nowrap" id="btn-terms" onclick="switchTab('tab-terms', this)">תקנון ותנאי שימוש</button>
@@ -325,33 +392,31 @@
                 <div id="tab-terms" class="tab-content hidden space-y-4">
                     <p class="font-bold text-white text-lg underline">תקנון ותנאי שימוש</p>
                     <p>ברוכים הבאים לאתר AnimePrime. גלישה באתר ושימוש בקישורים המופיעים בו מהווים הסכמה מלאה ובלתי חוזרת לתנאים המפורטים להלן:</p>
-                    <p>1. שירותי האתר: האתר מספק שירותי המלצה, ריכוז קישורים ותוכן בתחום האספנות בלבד. האתר אינו מהווה חנות, אינו מבצע עסקאות מכר ישירות ואינו צד בכל התקשרות בין המשתמש לבין ספקים חיצוניים.</p>
-                    <p>2. העדר אחריות: AnimePrime ובעליו אינם נושאים בכל אחריות ישירה או עקיפה למוצרים הנרכשים דרך הקישורים באתר. האחריות לטיב המוצר, תקינותו, זמני המשלוח, מדיניות החזרות ושירות לקוחות חלה באופן בלעדי על הספק החיצוני (כגון AliExpress) ועל המוכר הספציפי באתר היעד.</p>
+                    <p>1. שירותי האתר: האתר מספק שירותי המלצה, ריכוז קישורים ותוכן בתחום האספנות בלבד. האתר אינו חנות, אינו מבצע עסקאות מכר ישירות ואינו צד בכל התקשרות בין המשתמש לבין ספקים חיצוניים.</p>
+                    <p>2. העדר אחריות: AnimePrime ובעליו אינם נושאים בכל אחריות ישירה או עקיפה למוצרים הנרכשים דרך הקישורים באתר. האחריות לטיב המוצר, תקינותו, זמני המשלוח, מדיניות החזרות ושירות לקוחות חלה באופן בלעדי על הספק החיצוני (כגון AliExpress).</p>
                     <p>3. אימות נתונים: המידע המוצג באתר (מחירים, מפרטים, זמינות) נשען על נתונים המתקבלים מצדדים שלישיים. אנו פועלים לעדכנו, אך אין להסתמך עליו באופן בלעדי ויש לבדוק את הנתונים הסופיים באתר הספק לפני ביצוע כל רכישה.</p>
-                    <p>4. שימוש אחראי: כל שימוש באתר ובמידע המוצג בו הוא על אחריות המשתמש בלבד. האתר לא יהיה אחראי לכל נזק, ישיר או עקיף, הנובע משימוש בתוכן המפורסם בו.</p>
-                    <p>5. סמכות שיפוט: על תנאי שימוש אלו יחולו חוקי מדינת ישראל. סמכות השיפוט הבלעדית לכל עניין הנובע מהשימוש באתר תהא מסורה לבתי המשפט המוסמכים בישראל בלבד.</p>
                 </div>
                 <div id="tab-privacy" class="tab-content hidden space-y-4">
                     <p class="font-bold text-white text-lg underline">מדיניות פרטיות</p>
                     <p>אנו מכבדים את פרטיות הגולשים ופועלים על פי סטנדרטים מקובלים לשמירה על מידע:</p>
                     <p>1. מידע אנונימי: בעת הגלישה נאסף מידע טכני אנונימי (כגון סוג מכשיר, דפדפן וזמני שהייה) לצרכי שיפור חוויית המשתמש וסטטיסטיקה פנימית בלבד. מידע זה אינו מאפשר זיהוי אישי של הגולש.</p>
-                    <p>2. העברת מידע לצד ג': האתר אינו אוסף או שומר מידע אישי מזהה ואינו מעביר מידע כזה לצדדים שלישיים. עם זאת, לחיצה על קישורים חיצוניים מעבירה אתכם לאתרים המפעילים מדיניות פרטיות משלהם שאינה בשליטתנו.</p>
+                    <p>2. העברת מידע לצד ג': האתר אינו אוסף או שומר מידע אישי מזהה ואינו מעביר מידע כזה לצדדים שלישיים. עם זאת, לחיצה על קישורים חיצוניים מעבירה אתכם לאתרים המפעילים מדיניות פרטיות משלהם.</p>
                 </div>
                 <div id="tab-cookies" class="tab-content hidden space-y-4">
                     <p class="font-bold text-white text-lg underline">מדיניות עוגיות (Cookies)</p>
                     <p>האתר משתמש בעוגיות לצורך תפעולו התקין:</p>
-                    <p>1. מהן עוגיות? קבצי טקסט זעירים הנשמרים בדפדפן ומאפשרים למערכות לזהות את המשתמש ולהבין העדפות (כמו הגדרות נגישות).</p>
-                    <p>2. עוגיות צד ג': אתרי היעד (כגון AliExpress) משתמשים בעוגיות כדי לזהות שהגעתם דרך הקישור שלנו לצורך תיעוד המכירה. מומלץ לעיין במדיניות העוגיות של אותם אתרים.</p>
+                    <p>1. מהן עוגיות? קבצי טקסט זעירים הנשמרים בדפדפן ומאפשרים למערכות לזהות את המשתמש ולשמור העדפות (כמו הגדרות נגישות).</p>
+                    <p>2. עוגיות צד ג': אתרי היעד (כגון AliExpress) משתמשים בעוגיות כדי לזהות שהגעתם דרך הקישור שלנו לצורך תיעוד המכירה.</p>
                 </div>
                 <div id="tab-affiliate" class="tab-content block space-y-4">
                     <p class="font-bold text-white text-lg underline">גילוי נאות - תוכנית שותפים</p>
                     <p>שקיפות מלאה היא חלק בלתי נפרד מהפעילות שלנו ב-AnimePrime:</p>
-                    <p>1. קישורי שותפים: הקישורים המופיעים באתר הם בחלקם הגדול "קישורי שותפים". המשמעות היא שבמידה ותבצעו רכישה לאחר לחיצה על קישור, אנו עשויים לקבל עמלה קטנה מהמכירה ללא כל עלות נוספת עבורכם.</p>
-                    <p>2. השפעה על המחיר: חשוב להדגיש - העמלה משולמת לנו ישירות על ידי המוכר ואינה מוסיפה עלות נוספת למחיר המוצר עבורכם. לעיתים אנו אף מצליחים להשיג קופונים המורידים את המחיר המקורי.</p>
-                    <p>3. אובייקטיביות: בחירת המוצרים המוצגים באתר נעשית על סמך איכות, ביקורות חיוביות ורלוונטיות לקהילת האספנים, ללא קשר לגובה העמלה.</p>
+                    <p>1. קישורי שותפים: הקישורים המופיעים באתר הם בחלקם הגדול "קישורי שותפים". המשמעות היא שבמידה ותבצעו רכישה לאחר לחיצה על קישור, אנו עשויים לקבל עמלה קטנה מהמכירה.</p>
+                    <p>2. השפעה על המחיר: חשוב להדגיש - העמלה משולמת לנו ישירות על ידי המוכר ואינה מוסיפה עלות נוספת למחיר המוצר עבורכם.</p>
+                    <p>3. אובייקטיביות: בחירת המוצרים המוצגים באתר נעשית על סמך איכות וביקורות חיוביות בלבד.</p>
                 </div>
             </div>
-            <div class="p-6 flex justify-center shrink-0 border-t border-[#2a2f38] bg-[#121418]">
+            <div class="p-6 flex justify-center shrink-0 border-t border-gray-800 bg-[#121418]">
                 <button onclick="closeModal()" class="elegant-btn !w-auto !px-16 !py-3 cursor-pointer border-none shadow-none"><span>הבנתי, תודה</span></button>
             </div>
         </div>
@@ -360,7 +425,7 @@
     <script>
         lucide.createIcons();
 
-        // Share API
+        // Share API Logic
         async function shareSite() {
             const shareData = {
                 title: 'AnimePrime | קהילת אספני האנימה של ישראל',
@@ -380,7 +445,7 @@
             } catch (err) { console.error('Error sharing:', err); }
         }
 
-        // Modal & Tabs Logic
+        // Modal & Tab Logic
         window.openModal = function(id) {
             const modal = document.getElementById('privacy-modal');
             modal.classList.replace('hidden-panel', 'visible-panel');
@@ -403,14 +468,10 @@
         document.getElementById('close-accessibility').onclick = () => accPanel.classList.remove('visible-panel');
         
         let currentFontSize = 16;
-        document.getElementById('increase-font').onclick = () => { 
-            currentFontSize += 2; 
-            if(currentFontSize > 24) currentFontSize = 24; 
-            document.documentElement.style.fontSize = currentFontSize + 'px'; 
-        };
-        document.getElementById('decrease-font').onclick = () => { 
-            currentFontSize -= 2; 
+        window.changeFontSize = (v) => { 
+            currentFontSize += v; 
             if(currentFontSize < 12) currentFontSize = 12; 
+            if(currentFontSize > 24) currentFontSize = 24; 
             document.documentElement.style.fontSize = currentFontSize + 'px'; 
         };
 
