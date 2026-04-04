@@ -20,6 +20,7 @@
             --btn-bg: #161a20; 
             --btn-text: #ffffff; 
             --accent: #dc2626; 
+            --accent-dark: #7f1d1d;
         }
 
         /* Accessibility Styles */
@@ -31,7 +32,6 @@
         html.light-theme body { background-color: #f3f4f6 !important; color: #111827 !important; }
         html.light-theme h1, html.light-theme h2, html.light-theme h3, html.light-theme strong, html.light-theme p, html.light-theme span { color: #111827 !important; }
         html.light-theme .header-bg-section { background: #e5e7eb !important; }
-        html.light-theme .elegant-btn { background-color: #ffffff !important; color: #000 !important; border: 2px solid #000 !important; }
 
         html { scroll-behavior: smooth; }
 
@@ -72,6 +72,7 @@
             100% { transform: translateY(-200px) scale(0.4) translateX(-20px); opacity: 0; }
         }
 
+        /* Buttons */
         .elegant-btn {
             background-color: var(--btn-bg);
             color: var(--btn-text);
@@ -92,7 +93,24 @@
             border: 1px solid rgba(255,255,255,0.05);
             text-decoration: none;
         }
-        .elegant-btn:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2); }
+        .elegant-btn:hover { transform: translateY(-4px); background-color: #1c2128; border-color: var(--accent); box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2); }
+
+        /* Telegram Highlighted Button */
+        .telegram-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+            animation: pulse-telegram 3s infinite;
+            border: none;
+        }
+        .telegram-highlight:hover {
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
+            background: linear-gradient(135deg, #ef4444 0%, var(--accent) 100%);
+        }
+        @keyframes pulse-telegram {
+            0% { box-shadow: 0 0 10px rgba(220, 38, 38, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(220, 38, 38, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(220, 38, 38, 0.3); }
+        }
 
         .tab-btn { position: relative; transition: all 0.3s ease; color: #9ca3af; padding-bottom: 8px; border: none; background: transparent; cursor: pointer; }
         .tab-btn.active { color: #ffffff; font-weight: bold; }
@@ -155,50 +173,56 @@
         </header>
 
         <nav class="w-full flex flex-col gap-4 mb-20 relative px-5">
-            <a href="https://t.me/AnimePrime93" target="_blank" class="elegant-btn">הצטרפו לערוץ הטלגרם</a>
-            <a href="https://www.tiktok.com/@ronenabramov93" target="_blank" class="elegant-btn">עקבו אחרינו בטיקטוק</a>
-            <a href="https://ro-projects.top/animeprime" target="_blank" class="elegant-btn">האתר הרשמי - קופונים ודילים</a>
-            <a href="https://s.click.aliexpress.com/e/_c2QId99N" target="_blank" class="elegant-btn border-red-900/30">מבצעים באליאקספרס</a>
+            <!-- כפתור הטלגרם המודגש -->
+            <a href="https://t.me/AnimePrime93" target="_blank" class="elegant-btn telegram-highlight"><span>הצטרפו לערוץ הטלגרם</span></a>
+            
+            <a href="https://www.tiktok.com/@ronenabramov93" target="_blank" class="elegant-btn"><span>עקבו אחרינו בטיקטוק</span></a>
+            <a href="https://ro-projects.top/animeprime" target="_blank" class="elegant-btn"><span>האתר הרשמי - קופונים ודילים</span></a>
+            <a href="https://s.click.aliexpress.com/e/_c2QId99N" target="_blank" class="elegant-btn border-red-900/30"><span>מבצעים באליאקספרס</span></a>
         </nav>
 
         <footer class="w-full text-center pb-12 relative">
             <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-3 mb-8 px-2">
-                <button onclick="openModal('tab-terms')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase cursor-pointer bg-transparent border-none">תקנון ותנאי שימוש</button>
+                <button onclick="openModal('tab-terms')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase border-none bg-transparent cursor-pointer">תקנון ותנאי שימוש</button>
                 <span class="text-gray-800 text-xs">|</span>
-                <button onclick="openModal('tab-privacy')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase cursor-pointer bg-transparent border-none">פרטיות</button>
+                <button onclick="openModal('tab-privacy')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase border-none bg-transparent cursor-pointer">פרטיות</button>
                 <span class="text-gray-800 text-xs">|</span>
-                <button onclick="openModal('tab-cookies')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase cursor-pointer bg-transparent border-none">עוגיות</button>
+                <button onclick="openModal('tab-cookies')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase border-none bg-transparent cursor-pointer">עוגיות</button>
                 <span class="text-gray-800 text-xs">|</span>
-                <button onclick="openModal('tab-affiliate')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase cursor-pointer bg-transparent border-none">גילוי נאות</button>
+                <button onclick="openModal('tab-affiliate')" class="text-[0.70rem] text-gray-500 hover:text-white uppercase border-none bg-transparent cursor-pointer">גילוי נאות</button>
             </div>
             <p class="text-[0.65rem] text-gray-600 font-light tracking-widest uppercase">ANIME PRIME 2026 &copy;</p>
         </footer>
     </main>
 
-    <!-- Floating UI Controls -->
+    <!-- UI Buttons -->
     <button id="accessibility-btn" class="fixed bottom-6 left-6 z-[100] bg-[#121418] p-3.5 rounded-full border border-gray-800 text-gray-400 hover:text-white shadow-xl cursor-pointer"><i data-lucide="accessibility" class="w-6 h-6"></i></button>
     <button onclick="shareSite()" class="fixed bottom-6 right-6 z-[100] bg-[#121418] p-3.5 rounded-full border border-gray-800 text-gray-400 hover:text-red-500 shadow-xl cursor-pointer transition-all"><i data-lucide="share-2" class="w-6 h-6"></i></button>
 
-    <!-- Accessibility Panel -->
+    <!-- Accessibility Panel Improved -->
     <div id="accessibility-panel" class="hidden-panel panel-transition fixed bottom-24 left-6 bg-[#121418] rounded-2xl shadow-2xl p-6 w-[290px] z-[110] border border-gray-800">
         <div class="flex items-center justify-between mb-5 border-b border-gray-800 pb-4">
-            <h3 class="font-anime font-bold text-lg text-white">נגישות</h3>
+            <h3 class="font-anime font-bold text-lg text-white">התאמת נגישות</h3>
             <button id="close-accessibility" class="text-gray-500 hover:text-white border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-            <button onclick="changeFontSize(2)" class="p-2 rounded-lg bg-[#1a1d24] text-gray-400 text-xs border-none cursor-pointer">הגדל טקסט</button>
-            <button onclick="changeFontSize(-2)" class="p-2 rounded-lg bg-[#1a1d24] text-gray-400 text-xs border-none cursor-pointer">הקטן טקסט</button>
-            <button id="toggle-contrast" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.7rem] border-none cursor-pointer">ניגודיות</button>
-            <button id="toggle-grayscale" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.7rem] border-none cursor-pointer">גווני אפור</button>
-            <button id="toggle-links" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.7rem] border-none cursor-pointer">הדגשת קישורים</button>
-            <button id="toggle-font" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.7rem] border-none cursor-pointer">פונט קריא</button>
-            <button id="toggle-animations" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.7rem] border-none cursor-pointer">עצור אנימציה</button>
-            <button id="toggle-light" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.7rem] border-none cursor-pointer">רקע בהיר</button>
-            <button id="reset-accessibility" class="col-span-2 mt-2 p-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-sm border-none cursor-pointer transition-colors">איפוס הגדרות</button>
+        <div class="flex flex-col gap-3">
+            <div class="flex gap-2">
+                <button id="increase-font" class="flex-1 p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-xs border-none cursor-pointer">הגדל טקסט</button>
+                <button id="decrease-font" class="flex-1 p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-xs border-none cursor-pointer">הקטן טקסט</button>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+                <button id="toggle-contrast" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">ניגודיות</button>
+                <button id="toggle-grayscale" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">גווני אפור</button>
+                <button id="toggle-links" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">קישורים</button>
+                <button id="toggle-font" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">פונט קריא</button>
+                <button id="toggle-animations" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">עצור אנימציה</button>
+                <button id="toggle-light" class="p-2.5 rounded-lg bg-[#1a1d24] hover:bg-[#2a2f38] text-gray-400 text-[0.75rem] border-none cursor-pointer">רקע בהיר</button>
+            </div>
+            <button id="reset-accessibility" class="mt-2 w-full p-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-sm border-none cursor-pointer transition-colors">איפוס הגדרות</button>
         </div>
     </div>
 
-    <!-- Legal Modals -->
+    <!-- Modals -->
     <div id="privacy-modal" class="hidden-panel panel-transition fixed inset-0 z-[200] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-[#121418] rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-gray-800 relative overflow-hidden">
             <button onclick="closeModal()" class="absolute top-5 left-5 p-2 text-gray-500 hover:text-white z-20 border-none bg-transparent cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -230,7 +254,7 @@
                 <div id="tab-cookies" class="tab-content hidden space-y-4">
                     <p class="font-bold text-white text-lg underline">מדיניות עוגיות (Cookies)</p>
                     <p>האתר משתמש בעוגיות לצורך תפעולו התקין:</p>
-                    <p>1. מהן עוגיות? קבצי טקסט זעירים הנשמרים בדפדפן ומאפשרים למערכות לזהות את המשתמש ולהבין העדפות (כמו הגדרות נגישות).</p>
+                    <p>1. מהן עוגיות? קבצי טקסט זעירים הנשמרים בדפדפן ומאפשרים למערכות לזהות את המשתמש ולשמור העדפות (כמו הגדרות נגישות).</p>
                     <p>2. עוגיות צד ג': אתרי היעד (כגון AliExpress) משתמשים בעוגיות כדי לזהות שהגעתם דרך הקישור שלנו לצורך תיעוד המכירה. מומלץ לעיין במדיניות העוגיות של אותם אתרים.</p>
                 </div>
                 <div id="tab-affiliate" class="tab-content block space-y-4">
@@ -250,7 +274,7 @@
     <script>
         lucide.createIcons();
 
-        // Share API Logic
+        // Share API
         async function shareSite() {
             const shareData = {
                 title: 'AnimePrime | קהילת אספני האנימה של ישראל',
@@ -258,20 +282,20 @@
                 url: window.location.href
             };
             try {
-                if (navigator.share) await navigator.share(shareData);
-                else {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
                     const el = document.createElement('textarea');
                     el.value = window.location.href;
                     document.body.appendChild(el);
                     el.select();
                     document.execCommand('copy');
                     document.body.removeChild(el);
-                    // Custom toast or message instead of alert
                 }
             } catch (err) { console.error('Error sharing:', err); }
         }
 
-        // Modal & Tab Logic
+        // Modal & Tabs
         function openModal(id) {
             const modal = document.getElementById('privacy-modal');
             modal.classList.replace('hidden-panel', 'visible-panel');
@@ -288,18 +312,22 @@
         }
         function closeModal() { document.getElementById('privacy-modal').classList.replace('visible-panel', 'hidden-panel'); }
 
-        // Accessibility Logic
+        // Accessibility Menu
         const accPanel = document.getElementById('accessibility-panel');
         document.getElementById('accessibility-btn').onclick = () => accPanel.classList.toggle('visible-panel');
         document.getElementById('close-accessibility').onclick = () => accPanel.classList.remove('visible-panel');
         
         let currentFontSize = 16;
-        function changeFontSize(v) { 
-            currentFontSize += v; 
-            if(currentFontSize < 12) currentFontSize = 12; 
+        document.getElementById('increase-font').onclick = () => { 
+            currentFontSize += 2; 
             if(currentFontSize > 24) currentFontSize = 24; 
             document.documentElement.style.fontSize = currentFontSize + 'px'; 
-        }
+        };
+        document.getElementById('decrease-font').onclick = () => { 
+            currentFontSize -= 2; 
+            if(currentFontSize < 12) currentFontSize = 12; 
+            document.documentElement.style.fontSize = currentFontSize + 'px'; 
+        };
 
         document.getElementById('toggle-contrast').onclick = () => document.documentElement.classList.toggle('high-contrast');
         document.getElementById('toggle-grayscale').onclick = () => document.documentElement.classList.toggle('grayscale-mode');
@@ -309,9 +337,7 @@
         document.getElementById('toggle-light').onclick = () => document.documentElement.classList.toggle('light-theme');
         
         document.getElementById('reset-accessibility').onclick = () => { 
-            currentFontSize = 16; 
-            document.documentElement.style.fontSize = '16px'; 
-            document.documentElement.className = ''; 
+            currentFontSize = 16; document.documentElement.style.fontSize = '16px'; document.documentElement.className = ''; 
         };
     </script>
 </body>
